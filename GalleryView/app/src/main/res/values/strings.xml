@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">Androideity-Gallery</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_androideity_gallery">Androideity Gallery</string>
+    <string name="descripcion">Imagen Seleccionada</string>
+
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Ejemplo-TransitionDrawable</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_transition_drawable">TransitionDrawable</string>
+
+</resources>
