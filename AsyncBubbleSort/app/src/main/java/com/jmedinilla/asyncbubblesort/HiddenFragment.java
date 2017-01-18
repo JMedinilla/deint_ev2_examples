@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 public class HiddenFragment extends Fragment {
     private ITaskCallback taskCallback;
+    BubbleNumberTask bubbleNumberTask;
 
     interface ITaskCallback {
         void onPreExecute();
@@ -15,7 +16,7 @@ public class HiddenFragment extends Fragment {
 
         void onCancelled();
 
-        void onPostExecute();
+        void onPostExecute(Long aVoid);
     }
 
     @Override
@@ -30,17 +31,19 @@ public class HiddenFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        super.onDetach();
         taskCallback = null;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        BubbleNumberTask bubbleNumberTask = new BubbleNumberTask();
+        bubbleNumberTask = new BubbleNumberTask();
         bubbleNumberTask.execute();
     }
 
-    class BubbleNumberTask extends AsyncTask<Void, Integer, Void> {
+    class BubbleNumberTask extends AsyncTask<Void, Integer, Long> {
 
         @Override
         protected void onPreExecute() {
@@ -49,8 +52,25 @@ public class HiddenFragment extends Fragment {
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-            return null;
+        protected Long doInBackground(Void... voids) {
+            Long t0 = System.currentTimeMillis();
+            int aux;
+            for (int i = 0; i < MainActivity.numbers.length - 1; i++) {
+                for (int j = 0; j < MainActivity.numbers.length -1; j++) {
+                    if (MainActivity.numbers[j] > MainActivity.numbers[j+1])
+                    {
+                        aux = MainActivity.numbers[j];
+                        MainActivity.numbers[j] = MainActivity.numbers[j+1];
+                        MainActivity.numbers[j+1] = aux;
+                    }
+                }
+
+                if(!isCancelled())
+                    publishProgress((int)(((i+1)/(float)(MainActivity.numbers.length-1))*100));
+                else break;
+            }
+            Long t1 = System.currentTimeMillis();
+            return ((t1 - t0) / 1000);
         }
 
         @Override
@@ -60,9 +80,9 @@ public class HiddenFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Long aVoid) {
             super.onPostExecute(aVoid);
-            taskCallback.onPostExecute();
+            taskCallback.onPostExecute(aVoid);
         }
 
         @Override

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">AsyncBubbleSort</string>
-    <string name="txtProgress">Progreso de la operación...</string>
+    <string name="txtProgress">***</string>
     <string name="btnInit">Init</string>
     <string name="btnCancel">Cancel</string>
 </resources>
