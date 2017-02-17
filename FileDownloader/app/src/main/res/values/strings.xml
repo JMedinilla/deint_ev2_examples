@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FileDownloader</string>
+    <string name="btnDownload">Download</string>
+    <string name="download_file">File Downloaded</string>
+    <string name="giveMePermission">give em to me dude</string>
+    <string name="donthavePermission">No tengo permisos</string>
+</resources>
