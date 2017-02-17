@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    tools:context="com.jmedinilla.boundservice.MainActivity">
+
+    <Button
+        android:id="@+id/btnPrintTime"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnTimestamp" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/btnPrintTime"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnStop" />
+
+    <TextView
+        android:id="@+id/txtTimestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnStop"
+        android:gravity="center" />
+</RelativeLayout>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BoundService</string>
+    <string name="btnStop">Stop</string>
+    <string name="btnTimestamp">Timestamp</string>
+</resources>
