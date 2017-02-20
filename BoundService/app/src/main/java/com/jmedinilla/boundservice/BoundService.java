@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Chronometer;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -37,6 +38,7 @@ public class BoundService extends Service {
     @Override
     public void onRebind(Intent intent) {
         Log.d("BoundService", "onRebind");
+        mChronometer.start();
         super.onRebind(intent);
     }
 
@@ -44,12 +46,13 @@ public class BoundService extends Service {
     public boolean onUnbind(Intent intent) {
         Log.d("BoundService", "onUnbind");
         mChronometer.stop();
-        return super.onUnbind(intent);
+        //return super.onUnbind(intent);
+        //True indica que se desea llamar a onRebind
+        return true;
     }
 
     public String getTimesStamp() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
-        return simpleDateFormat.format(new Date(System.currentTimeMillis()));
+        return new SimpleDateFormat("HH:mm:ss:SSS", Locale.getDefault()).format(new Date());
     }
 
     public class MyBinder extends Binder {

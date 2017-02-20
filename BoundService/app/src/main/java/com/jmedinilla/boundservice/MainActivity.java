@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
         btnTimestamp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!serviceBounded) {
+                    Intent intent = new Intent(MainActivity.this, BoundService.class);
+                    bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+                }
                 txtTimestamp.setText(boundService.getTimesStamp());
                 btnStop.setEnabled(true);
             }
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Intent intent = new Intent(MainActivity.this, BoundService.class);
+        startService(intent);
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
     }
 
@@ -74,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
             unbindService(serviceConnection);
             serviceBounded = false;
         }
+        /*
         Intent intent = new Intent(MainActivity.this, BoundService.class);
         stopService(intent);
         btnStop.setEnabled(false);
         txtTimestamp.setText("");
+        */
     }
 }
